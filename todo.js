@@ -4,27 +4,47 @@ const addBtn = document.querySelectorAll('.todo__add img'),
     checkbox = document.querySelectorAll('.todo__checkbox ul'),
     li = document.querySelectorAll('.todo__checkbox li'),
     textInput = document.querySelectorAll('.todo__add input');
-let counter = 0;
+let counter = 0,
+    activeItem = '';
 
 class Task {
     render() {
         checkbox[counter].innerHTML += `
             <li>
                 <input type="checkbox">
-                <span>${textInput[counter].value}</span>
-                <img src="img/trash-alt-solid.svg" class = "delete" alt="">
+                <span class="todo__text">${textInput[counter].value}</span>
+                <img src="img/trash-solid.svg" class = "delete" alt="">
             </li>
         `
     }
 }
 const task = new Task();
 
+// Удаление элемента 
 function close(e) {
     if (e.target.classList.contains('delete')) {
         e.target.parentElement.remove();
     }
 }
+// Зачеркивание текста
+function moveLine(e) {
+    if (e.target.classList.contains('todo__text')) {
+        e.target.classList.toggle('line');
+    }
+};
+// prevent
+function dragover(event) {
+    event.preventDefault();
+};
 
+// drop itemф
+function dropItem() {
+    this.append(activeItem);
+}
+
+
+
+// Добавление нового элемента
 addBtn.forEach((btn, i) => {
     btn.addEventListener('click', () => {
         if (textInput[i].value === "" || textInput[i].value === '0') {
@@ -39,38 +59,37 @@ addBtn.forEach((btn, i) => {
     })
 })
 
+// Перебор и удаление
 checkbox.forEach(box => {
     box.addEventListener('click', close)
 })
 
 
+li.forEach(list => {
+    list.addEventListener('click', moveLine)
+    // Реализация Drag & Drop
+    list.draggable = true;
+    list.addEventListener('dragstart', () => {
+        setTimeout(() => {
+            list.classList.add('hide');
+            return activeItem = document.querySelector(".hide");
+        }, 0);
+    });
+    list.addEventListener('dragend', () => {
+        setTimeout(() => {
+            list.classList.remove('hide');
+        }, 0);
 
-// li.forEach(list => {
-//     list.draggable = true;
-//     list.addEventListener('dragstart', () => {
-//         setTimeout(() => {
-//             list.classList.add('hide');
-//         }, 0)
-//     })
-//     list.addEventListener('dragend', () => {
-//         setTimeout(() => {
-//             list.classList.remove('hide');
-//         }, 0)
+    })
+})
 
-//     })
-// })
-// contents.forEach(item => {
-//     function dragover(event) {
-//         event.preventDefault();
-//     };
 
-//     item.addEventListener('dragover', dragover);
-//     item.addEventListener('dragenter', () => { });
-//     item.addEventListener('dragleave', () => { });
-//     item.addEventListener('drop', () => {
-//         checkbox[2].append(list)
-//     });
-// })
+checkbox.forEach(item => {
+    item.addEventListener('dragover', dragover);
+    item.addEventListener('dragenter', () => { });
+    item.addEventListener('dragleave', () => { });
+    item.addEventListener('drop', dropItem);
+})
 
 
 

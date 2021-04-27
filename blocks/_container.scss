@@ -1,0 +1,19 @@
+.container {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    max-width: 1170px;
+    padding: 0 15px;
+}
+@media (max-width:992px){
+    .container {
+        flex-wrap: wrap;
+        max-width: 850px;
+    }
+}
+@media (max-width:772px){
+    .container{
+        max-width: none;
+    }
+}

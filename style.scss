@@ -7,6 +7,7 @@
 }
 html, body {
     height: 100%;
+    width: 100%;
   }
 body {
     background: linear-gradient(45deg, #a1ffce, #f9ffd1);
@@ -19,8 +20,14 @@ li {
     list-style-type: none;
 }
 .hide {
-    display: none
+    display: none;
+}
+.line {
+    text-decoration: line-through;
+    opacity: .5;
 }
 
 
 @import 'blocks/todo';
+@import 'blocks/container';
+

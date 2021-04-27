@@ -8,6 +8,7 @@
 
 html, body {
   height: 100%;
+  width: 100%;
 }
 
 body {
@@ -32,9 +33,14 @@ li {
   display: none;
 }
 
+.line {
+  text-decoration: line-through;
+  opacity: .5;
+}
+
 .todo {
   height: 450px;
-  width: 350px;
+  min-width: 315px;
   background-color: #fff;
   border-radius: 10px;
   overflow: hidden;
@@ -82,18 +88,12 @@ li {
 
 .todo__add {
   position: relative;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
 }
 
 .todo__add input {
+  width: 304px;
   outline: none;
   margin-top: 7px;
-  width: 340px;
   padding: 10px 15px;
   border: none;
   -webkit-box-shadow: 0px 4px 4px -3px rgba(43, 43, 43, 0.5);
@@ -103,6 +103,7 @@ li {
 .todo__add img {
   height: 20px;
   opacity: .5;
+  top: 12px;
   right: 15px;
   position: absolute;
   cursor: pointer;
@@ -111,6 +112,7 @@ li {
 .todo__checkbox {
   position: relative;
   height: 100%;
+  min-width: 300px;
 }
 
 .todo__checkbox ul {
@@ -118,7 +120,8 @@ li {
 }
 
 .todo__checkbox li {
-  width: 340px;
+  width: 305px;
+  height: 40px;
   padding: 10px 15px;
   margin: 15px 0;
   -webkit-box-shadow: 1px 1px 3px rgba(43, 43, 43, 0.5);
@@ -126,17 +129,32 @@ li {
   border-radius: 1px;
   text-transform: uppercase;
   font-size: 18px;
+  position: relative;
+  overflow: hidden;
 }
 
 .todo__checkbox img {
-  height: 20px;
-  opacity: .5;
-  right: 15px;
+  color: #fff;
+  background: linear-gradient(45deg, #a1ffce, #fff3d1);
+  padding: 7px;
+  height: 100%;
+  width: 0;
+  opacity: 0;
+  right: 0;
+  top: 0;
+  text-align: center;
   position: absolute;
   cursor: pointer;
+  -webkit-transition: all linear .3s;
+  transition: all linear .3s;
 }
 
-.todo__checkbox span {
+.todo__checkbox li:hover img {
+  width: 50px;
+  opacity: .6;
+}
+
+.todo__text {
   padding-left: 10px;
 }
 
@@ -146,4 +164,33 @@ li {
 
 .wednesday {
   background-image: url(../img/wednesday.jpg);
+}
+
+.container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 100%;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  max-width: 1170px;
+  padding: 0 15px;
+}
+
+@media (max-width: 992px) {
+  .container {
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    max-width: 850px;
+  }
+}
+
+@media (max-width: 772px) {
+  .container {
+    max-width: none;
+  }
 }
