@@ -47,6 +47,10 @@ li {
   -webkit-box-shadow: 3px 3px 10px rgba(43, 43, 43, 0.5);
           box-shadow: 3px 3px 10px rgba(43, 43, 43, 0.5);
   margin: 30px;
+  -webkit-animation-name: start;
+          animation-name: start;
+  -webkit-animation-duration: .7s;
+          animation-duration: .7s;
 }
 
 .todo__top {
@@ -128,7 +132,7 @@ li {
           box-shadow: 1px 1px 3px rgba(43, 43, 43, 0.5);
   border-radius: 1px;
   text-transform: uppercase;
-  font-size: 18px;
+  font-size: 16px;
   position: relative;
   overflow: hidden;
 }
@@ -165,6 +169,50 @@ li {
 
 .wednesday {
   background-image: url(../img/wednesday.jpg);
+}
+
+@-webkit-keyframes end {
+  0% {
+    -webkit-clip-path: circle(70.7% at 50% 50%);
+            clip-path: circle(70.7% at 50% 50%);
+  }
+  100% {
+    -webkit-clip-path: circle(0.4% at 50% 50%);
+            clip-path: circle(0.4% at 50% 50%);
+  }
+}
+
+@keyframes end {
+  0% {
+    -webkit-clip-path: circle(70.7% at 50% 50%);
+            clip-path: circle(70.7% at 50% 50%);
+  }
+  100% {
+    -webkit-clip-path: circle(0.4% at 50% 50%);
+            clip-path: circle(0.4% at 50% 50%);
+  }
+}
+
+@-webkit-keyframes start {
+  0% {
+    -webkit-clip-path: circle(0.4% at 50% 50%);
+            clip-path: circle(0.4% at 50% 50%);
+  }
+  100% {
+    -webkit-clip-path: circle(70.7% at 50% 50%);
+            clip-path: circle(70.7% at 50% 50%);
+  }
+}
+
+@keyframes start {
+  0% {
+    -webkit-clip-path: circle(0.4% at 50% 50%);
+            clip-path: circle(0.4% at 50% 50%);
+  }
+  100% {
+    -webkit-clip-path: circle(70.7% at 50% 50%);
+            clip-path: circle(70.7% at 50% 50%);
+  }
 }
 
 .container {

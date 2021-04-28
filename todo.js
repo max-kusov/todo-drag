@@ -23,7 +23,10 @@ const task = new Task();
 // Удаление элемента 
 function close(e) {
     if (e.target.classList.contains('delete')) {
-        e.target.parentElement.remove();
+        e.target.parentElement.style.cssText = 'animation-name: end; animation-duration: .45s;'
+        setTimeout(() => {
+            e.target.parentElement.remove();
+        }, 400)
     }
 }
 // Зачеркивание текста
@@ -49,7 +52,6 @@ addBtn.forEach((btn, i) => {
 
         if (textInput[i].value === "" || textInput[i].value === '0') {
         } else {
-
             setTimeout(() => {
                 task.render();
                 textInput[i].value = '';
