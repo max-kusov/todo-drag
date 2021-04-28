@@ -71,6 +71,7 @@
 
     }
     &__checkbox img {
+        display: block;
         color: #fff;
         background: linear-gradient(45deg, #a1ffce, #fff3d1);
         padding: 7px;
@@ -89,8 +90,9 @@
         opacity: .6;
     }
     &__text {
-        padding-left: 10px;
+        cursor: pointer;
     }
+
 }
 .tuesday {
     background-image: url(../img/tuesday.jpg);

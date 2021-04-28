@@ -4,14 +4,15 @@ const addBtn = document.querySelectorAll('.todo__add img'),
     checkbox = document.querySelectorAll('.todo__checkbox ul'),
     li = document.querySelectorAll('.todo__checkbox li'),
     textInput = document.querySelectorAll('.todo__add input');
+
 let counter = 0,
     activeItem = '';
+
 
 class Task {
     render() {
         checkbox[counter].innerHTML += `
             <li>
-                <input type="checkbox">
                 <span class="todo__text">${textInput[counter].value}</span>
                 <img src="img/trash-solid.svg" class = "delete" alt="">
             </li>
@@ -29,7 +30,7 @@ function close(e) {
 // Зачеркивание текста
 function moveLine(e) {
     if (e.target.classList.contains('todo__text')) {
-        e.target.classList.toggle('line');
+        e.target.parentElement.classList.toggle('line');
     }
 };
 // prevent
@@ -37,16 +38,16 @@ function dragover(event) {
     event.preventDefault();
 };
 
-// drop itemф
+// drop item
 function dropItem() {
     this.append(activeItem);
 }
 
 
-
 // Добавление нового элемента
 addBtn.forEach((btn, i) => {
     btn.addEventListener('click', () => {
+
         if (textInput[i].value === "" || textInput[i].value === '0') {
         } else {
 
