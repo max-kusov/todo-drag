@@ -8,11 +8,10 @@ const addBtn = document.querySelectorAll('.todo__add img'),
 let counter = 0,
     activeItem = '';
 
-
 class Task {
     render() {
         checkbox[counter].innerHTML += `
-            <li>
+            <li draggable="true">
                 <span class="todo__text">${textInput[counter].value}</span>
                 <img src="img/trash-solid.svg" class = "delete" alt="">
             </li>
@@ -33,12 +32,12 @@ function moveLine(e) {
         e.target.parentElement.classList.toggle('line');
     }
 };
-// prevent
+// область куда перемещаем
 function dragover(event) {
     event.preventDefault();
 };
 
-// drop item
+// раняем элемент в ячейку
 function dropItem() {
     this.append(activeItem);
 }
@@ -60,37 +59,39 @@ addBtn.forEach((btn, i) => {
     })
 })
 
-// Перебор и удаление
-checkbox.forEach(box => {
-    box.addEventListener('click', close)
+
+// навешивание draggable на уже созданные элементы списка
+li.forEach(list => {
+    list.draggable = true;
 })
 
+checkbox.forEach(box => {
+    // Перебор, удаление, зачеркивание
+    box.addEventListener('click', close);
+    box.addEventListener('click', moveLine);
+    console.log(box)
 
-li.forEach(list => {
-    list.addEventListener('click', moveLine)
-    // Реализация Drag & Drop
-    list.draggable = true;
-    list.addEventListener('dragstart', () => {
+    // начало и конец перемещения
+    box.addEventListener('dragstart', function (e) {
         setTimeout(() => {
-            list.classList.add('hide');
+            e.target.classList.add('hide');
             return activeItem = document.querySelector(".hide");
         }, 0);
     });
-    list.addEventListener('dragend', () => {
+    box.addEventListener('dragend', function (e) {
         setTimeout(() => {
-            list.classList.remove('hide');
+            e.target.classList.remove('hide');
         }, 0);
 
     })
+
+    // реализация drag and drop
+    box.addEventListener('dragover', dragover);
+    box.addEventListener('dragenter', () => { });
+    box.addEventListener('dragleave', () => { });
+    box.addEventListener('drop', dropItem);
 })
 
-
-checkbox.forEach(item => {
-    item.addEventListener('dragover', dragover);
-    item.addEventListener('dragenter', () => { });
-    item.addEventListener('dragleave', () => { });
-    item.addEventListener('drop', dropItem);
-})
 
 
 
